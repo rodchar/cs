@@ -9,13 +9,12 @@ namespace LogicSpinner.Test
     [TestFixture]
     public class DALTests
     {
-        BpDSTableAdapters.ReceiptsTableAdapter da;
-        BpDS.ReceiptsDataTable dt;
+
 
         [SetUp]
         protected void SetUp()
         {
-            da = new BpDSTableAdapters.ReceiptsTableAdapter(); 
+
         }
 
         [TearDown]
@@ -51,31 +50,38 @@ namespace LogicSpinner.Test
 
         [Test]
         public void GetReceipt()
-        {            
-            dt = da.GetDataBy(4);
+        {
+            Receipt r = ReceiptDAL.GetReceipt(1);
 
-            Assert.Greater(dt.Rows.Count, 0);
+            Assert.Greater(r.Id, 0);
         }
 
         [Test]
         public void UpdateReceipt()
         {
             //Arrange 
+            Receipt r = null;
             int id = 0;
 
             //Act
-            string retval = ReceiptDAL.UpdateReceipt(new Receipt() { Date = new DateTime(2012, 09, 12) });
-            Console.WriteLine("The current test output: {0}", retval);
-            int.TryParse(retval, out id);
+            id = ReceiptDAL.UpdateReceipt(new Receipt() { Date = new DateTime(2012, 09, 12) });
+            Console.WriteLine("The current test output: {0}", id);
 
             if (id > 0)
             {
-                dt = da.GetDataBy(id);
+                r = ReceiptDAL.GetReceipt(id);
             }
 
             //Assert
-            Assert.Greater(dt.Rows.Count, 0);
+            Assert.Greater(r.Id, 0);
+        }
 
+        [Test]
+        public static void UpdateReceiptItem()
+        {
+            string productName = ReceiptDAL.UpdateReceiptItem(1, new ReceiptItem() { Name = "strawb" });
+
+            
         }
     }
 }

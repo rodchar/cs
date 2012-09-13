@@ -159,6 +159,15 @@ namespace LogicSpinner
 
     public class ReceiptDAL : DAL
     {
+        static BpDSTableAdapters.ReceiptsTableAdapter daReceipts =
+            new BpDSTableAdapters.ReceiptsTableAdapter();
+        static BpDSTableAdapters.ReceiptItemsTableAdapter daReceiptItems =
+            new BpDSTableAdapters.ReceiptItemsTableAdapter();
+
+        static BpDS.ReceiptsDataTable dtReceipts;
+        static BpDS.ReceiptItemsDataTable dtReceiptItems;
+
+
         public static List<Receipt> ReceiptItems()
         {
             List<Receipt> list = new List<Receipt>();
@@ -203,30 +212,37 @@ namespace LogicSpinner
         }
 
         //Insert new receipt 
-        public static string UpdateReceipt(Receipt receipt)
-        {
-            string toReturn = string.Empty;
-
-            string queryString = string.Empty;
+        public static int UpdateReceipt(Receipt receipt)
+        {       
+            int newReceiptId = 0;
             //New Receipt
             if (receipt.Id == 0)
             {
-                queryString = string.Format(@"
-                Insert into Receipts
-                (date) Values (@date);
-                Select @@IDENTITY;
-                ");
-
-                KeyValuePair<string, string> parm1 = 
-                new KeyValuePair<string, string>("@date", receipt.Date.ToString());
-                KeyValuePair<string, string>[] sqlParms = { parm1 };
-                toReturn = GetScalarValue(queryString, sqlParms);
+                newReceiptId = daReceipts.Insert(receipt.Date, null);
             }
 
-            return toReturn;
+            return newReceiptId;
         }
 
         //Save receipt item 
+        public static string UpdateReceiptItem(int receiptId, ReceiptItem item)
+        {
+            string productName = string.Empty;
+            if (receiptId > 0)
+            {
+                productName = daReceiptItems.InsertQuery(receiptId, item.Name).ToString();
+            }
+            return productName;
+        }
+        
+        public static Receipt GetReceipt(int id)
+        {
+            dtReceipts = daReceipts.GetDataBy(id);
+            Receipt receipt = new Receipt();
+            receipt.Id = dtReceipts.FirstOrDefault().Id;
+            receipt.Date = dtReceipts.FirstOrDefault().Date;
+            return receipt;
+        }
 
         private static List<ReceiptItem> GetGenericReceiptItemList(DataTable dt)
         {

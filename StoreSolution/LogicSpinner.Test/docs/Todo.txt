@@ -1,5 +1,9 @@
-9/12/2012 (2 hours)
+﻿9/12/2012 (2 hours)
 1. Add table lookup for products and receipt names
+2. Need to add Name field to ReceiptsProducts table
+3. Finish test code for UpdateReceiptItem in ReceiptDAL
+4. Need to move UpdateReceiptItem into ReceiptItemDAL
+5. BUG - ReceiptItem saving wrong ProductId
 
 9/1/2012 (2 hours)
 1. Done. Use Visual Web Developer to build my DataSet
