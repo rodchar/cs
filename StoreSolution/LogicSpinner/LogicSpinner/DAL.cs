@@ -14,8 +14,6 @@ namespace LogicSpinner
             Integrated Security=true
             ";
 
-
-
         public static DataTable GetDatabaseRecords(string queryString, KeyValuePair<string,string>[] args = null)
         {
             DataTable dt = new DataTable();
@@ -36,6 +34,25 @@ namespace LogicSpinner
                 reader.Close();
             }
             return dt;
+        }
+
+        public static string GetScalarValue(string queryString, KeyValuePair<string, string>[] args = null)
+        {
+            string toReturn = string.Empty;
+
+            using (SqlConnection connection = new SqlConnection(CONNECTION_STRING))
+            {
+                SqlCommand command = new SqlCommand(queryString, connection);
+
+                if (args != null)
+                {
+                    command.Parameters.AddWithValue(args[0].Key, args[0].Value);
+                }
+
+                connection.Open();
+                toReturn = command.ExecuteScalar().ToString();
+            }
+            return toReturn;
         }
 
         public static decimal GetSafeDecimal(object p)
@@ -185,6 +202,32 @@ namespace LogicSpinner
             return list;
         }
 
+        //Insert new receipt 
+        public static string UpdateReceipt(Receipt receipt)
+        {
+            string toReturn = string.Empty;
+
+            string queryString = string.Empty;
+            //New Receipt
+            if (receipt.Id == 0)
+            {
+                queryString = string.Format(@"
+                Insert into Receipts
+                (date) Values (@date);
+                Select @@IDENTITY;
+                ");
+
+                KeyValuePair<string, string> parm1 = 
+                new KeyValuePair<string, string>("@date", receipt.Date.ToString());
+                KeyValuePair<string, string>[] sqlParms = { parm1 };
+                toReturn = GetScalarValue(queryString, sqlParms);
+            }
+
+            return toReturn;
+        }
+
+        //Save receipt item 
+
         private static List<ReceiptItem> GetGenericReceiptItemList(DataTable dt)
         {
             List<ReceiptItem> list = new List<ReceiptItem>();
@@ -200,5 +243,6 @@ namespace LogicSpinner
 
             return list;
         }
+
     }
 }
