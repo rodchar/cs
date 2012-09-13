@@ -1737,8 +1737,8 @@ SELECT Id, ReceiptId, Name, ProductId FROM ReceiptItems WHERE (Id = @Id)";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = @"INSERT INTO [ReceiptItems] ([ReceiptId], [Name], [ProductId]) VALUES (@ReceiptId, @Name, (SELECT id FROM Products where Name = (SELECT top 1 ProductName FROM ReceiptsProducts WHERE 'strawb'=ReceiptItemName)));
-SELECT ProductName FROM ReceiptsProducts where @Name = ReceiptItemName";
+            this._commandCollection[1].CommandText = @"INSERT INTO [ReceiptItems] ([ReceiptId], [Name], [ProductId]) VALUES (@ReceiptId, @Name, (SELECT id FROM Products where Name = (SELECT top 1 ProductName FROM ReceiptsProducts WHERE ReceiptItemName = @Name)));
+SELECT ProductName FROM ReceiptsProducts where ReceiptItemName = @Name";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ReceiptId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "ReceiptId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Name", global::System.Data.SqlDbType.NVarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "Name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -1959,7 +1959,7 @@ SELECT ProductName FROM ReceiptsProducts where @Name = ReceiptItemName";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, false)]
-        public virtual object InsertQuery(global::System.Nullable<int> ReceiptId, string Name) {
+        public virtual int InsertQuery(global::System.Nullable<int> ReceiptId, string Name) {
             global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[1];
             if ((ReceiptId.HasValue == true)) {
                 command.Parameters[0].Value = ((int)(ReceiptId.Value));
@@ -1978,22 +1978,16 @@ SELECT ProductName FROM ReceiptsProducts where @Name = ReceiptItemName";
                         != global::System.Data.ConnectionState.Open)) {
                 command.Connection.Open();
             }
-            object returnValue;
+            int returnValue;
             try {
-                returnValue = command.ExecuteScalar();
+                returnValue = command.ExecuteNonQuery();
             }
             finally {
                 if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
                     command.Connection.Close();
                 }
             }
-            if (((returnValue == null) 
-                        || (returnValue.GetType() == typeof(global::System.DBNull)))) {
-                return null;
-            }
-            else {
-                return ((object)(returnValue));
-            }
+            return returnValue;
         }
     }
     
