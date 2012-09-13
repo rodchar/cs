@@ -1,21 +1,24 @@
-﻿9/12/2012 (2 hours)
+﻿9/12/2012 (3 hours)
 1. Done. Add table lookup for products and receipt names
 2. Done. Need to add Name field to ReceiptItems table
 3. Finish test code for UpdateReceiptItem in ReceiptDAL
 4. Need to move UpdateReceiptItem into ReceiptItemDAL
 5. Done. BUG - ReceiptItem saving wrong ProductId
+6. Need to changed RecieptsProducts column from ProductName to ProductId
+6. Need to changed daReceiptsItem.InsertQuery sub query to reflect preceding item.
+7. Add Receipt Importer code from feed.text file in docs.
 
 9/1/2012 (2 hours)
 1. Done. Use Visual Web Developer to build my DataSet
-2. Include Sample feed on desktop. This also has code snippet
-   for Receipt ORM
+2. Done. Include Sample feed on desktop. This also has code snippet
+         for Receipt ORM
 
 ﻿8/29/2012 (2 hours)
 1. Done. Need receipt table.
 2. Save the database
 
 8/28/2012 (3 hours)
-1. Table lookup for products and abbreviations
+1. Done. Table lookup for products and abbreviations
 2. CRUD for Products, Rewards, print data
 3. Import print capture
 
