@@ -4,8 +4,8 @@
 3. Finish test code for UpdateReceiptItem in ReceiptDAL
 4. Need to move UpdateReceiptItem into ReceiptItemDAL
 5. Done. BUG - ReceiptItem saving wrong ProductId
-6. Need to changed RecieptsProducts column from ProductName to ProductId
-6. Need to changed daReceiptsItem.InsertQuery sub query to reflect preceding item.
+6. Need to change RecieptsProducts column from ProductName to ProductId
+6. Need to change daReceiptsItem.InsertQuery sub query to reflect preceding item.
 7. Add Receipt Importer code from feed.text file in docs.
 
 9/1/2012 (2 hours)
