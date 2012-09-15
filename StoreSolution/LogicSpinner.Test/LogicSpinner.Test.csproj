@@ -78,6 +78,7 @@
     <None Include="lib\nunit\nunit.exe.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="docs\feed.txt" />
     <Content Include="docs\Readme.txt" />
     <Content Include="docs\Spinner Loop Locals.JPG" />
     <Content Include="docs\Todo.txt" />

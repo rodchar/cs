@@ -1,4 +1,8 @@
-﻿9/12/2012 (3 hours)
+﻿9/14/2012
+1. Need to handle feed interruptions
+2. Provide manual way to import individual transactions
+
+9/12/2012 (3 hours)
 1. Done. Add table lookup for products and receipt names
 2. Done. Need to add Name field to ReceiptItems table
 3. Finish test code for UpdateReceiptItem in ReceiptDAL
