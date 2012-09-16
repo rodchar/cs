@@ -19,7 +19,7 @@ namespace SpinnerLogicWinForm
 
         private void MatchReceiptNames_Load(object sender, EventArgs e)
         {
-            BpDS.ProductsDataTable dt = Business.Products();
+            BpDS.ProductsDataTable dt = ProductBLL.Products();
             dt.CopyToDataTable(this.bpDS1.Products, LoadOption.OverwriteChanges);
         }
     }
