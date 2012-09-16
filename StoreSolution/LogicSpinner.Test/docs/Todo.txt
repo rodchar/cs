@@ -1,5 +1,7 @@
 ﻿9/15/2012
 1. Save the database
+2. Done 9/15/2012. Added ProductsNotMatched Query and Test
+3. Done 9/15/2012. Added ReceiptItemNamesNotMatched Query and Test
 
 9/14/2012
 1. Need to handle feed interruptions
@@ -11,7 +13,6 @@
 7. Done 9/15/2012. UpdateProduct test
 8. Done 9/15/2012. AddReceiptItemName test
 9. Done 9/15/2012. UpdateReceiptItemName test
-
 
 9/12/2012 (3 hours)
 1. Done. Add table lookup for products and receipt names
