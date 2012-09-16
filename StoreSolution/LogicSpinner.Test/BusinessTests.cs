@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using NUnit.Framework;
+using System.Data;
 
 namespace LogicSpinner.Test
 {
@@ -59,6 +60,32 @@ namespace LogicSpinner.Test
             Console.WriteLine();
             Console.WriteLine("Slow_SpinnerLogic_Result_Has_Count_Of_3");
             rewards.ForEach(r => Console.WriteLine(r.ProductCsv));
+        }
+
+        [Test]
+        public void Slow_Get_Products()
+        {
+            DataTable dt = ProductBLL.Products();
+
+            Assert.Greater(dt.Rows.Count, 0);
+        }
+
+        [Test]
+        public void Slow_ProductsNotMatched()
+        {
+            BpDS.ProductsDataTable dt =
+                ProductBLL.ProductsNotMatched();
+
+            Assert.Greater(dt.Rows.Count, 0);
+        }
+
+        [Test]
+        public void Slow_ReceiptItemNamesNotMatched()
+        {
+            BpDS.ReceiptItemNamesDataTable dt =
+                ReceiptBLL.ReceiptItemNamesNotMatched();
+
+            Assert.Greater(dt.Rows.Count, 0);
         }
 
         private static List<ReceiptItem> ReceiptItems()

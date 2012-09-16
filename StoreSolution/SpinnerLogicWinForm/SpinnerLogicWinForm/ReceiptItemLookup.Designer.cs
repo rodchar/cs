@@ -55,6 +55,7 @@
             this.tbReceiptsProducts.Name = "tbReceiptsProducts";
             this.tbReceiptsProducts.Size = new System.Drawing.Size(258, 29);
             this.tbReceiptsProducts.TabIndex = 1;
+            this.tbReceiptsProducts.Click += new System.EventHandler(this.tbReceiptsProducts_Click);
             // 
             // btnAddReceiptItemName
             // 
@@ -63,6 +64,7 @@
             this.btnAddReceiptItemName.Name = "btnAddReceiptItemName";
             this.btnAddReceiptItemName.Size = new System.Drawing.Size(97, 32);
             this.btnAddReceiptItemName.TabIndex = 3;
+            this.btnAddReceiptItemName.TabStop = false;
             this.btnAddReceiptItemName.Text = "Add";
             this.btnAddReceiptItemName.UseVisualStyleBackColor = true;
             this.btnAddReceiptItemName.Click += new System.EventHandler(this.btnAddReceiptItemName_Click);
@@ -87,6 +89,7 @@
             this.btnCancel.TabIndex = 5;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // lbReceiptsProducts
             // 
@@ -106,6 +109,7 @@
             this.btnRemove.Name = "btnRemove";
             this.btnRemove.Size = new System.Drawing.Size(97, 32);
             this.btnRemove.TabIndex = 7;
+            this.btnRemove.TabStop = false;
             this.btnRemove.Text = "Remove";
             this.btnRemove.UseVisualStyleBackColor = true;
             this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);

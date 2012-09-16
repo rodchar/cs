@@ -3,14 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using NUnit.Framework;
+using System.Data;
 
 namespace LogicSpinner.Test
 {
     [TestFixture]
     public class DALTests
     {
-
-
         [SetUp]
         protected void SetUp()
         {
@@ -26,11 +25,33 @@ namespace LogicSpinner.Test
         [Test]
         public void GetProducts()
         {
-            List<Product> p = ProductDAL.Products();
+            DataTable p = ProductDAL.GetProducts();
 
-            Assert.Greater(p.Count, 0);
+            Assert.Greater(p.Rows.Count, 0);
         }
 
+        [Test]
+        public void GetProductsNotMatchedYet()
+        {
+            BpDS.ProductsDataTable dt =  ProductDAL.ProductsNotMatchedYet();
+
+            Assert.Greater(dt.Rows.Count, 0);
+
+        }
+
+        [Ignore("Updates Database - AddProduct")]
+        [Test]
+        public void AddProduct()
+        {
+            ProductDAL.UpdateProduct(new Product() { Name = "cranberry" });
+        }
+
+        [Ignore("Updates Database - UpdateProduct")]
+        [Test]
+        public void UpdateProduct()
+        {
+            ProductDAL.UpdateProduct(new Product() {Id = 6, Name = "cranberry2" });
+        }
 
         [Test]
         public void GetRewards()
@@ -56,6 +77,7 @@ namespace LogicSpinner.Test
             Assert.Greater(r.Id, 0);
         }
 
+        [Ignore("Updates Database - UpdateReceipt")]
         [Test]
         public void UpdateReceipt()
         {
@@ -76,12 +98,35 @@ namespace LogicSpinner.Test
             Assert.Greater(r.Id, 0);
         }
 
+        [Ignore("Updates Database - UpdateReceiptItem")]
         [Test]
         public static void UpdateReceiptItem()
         {
             string productName = ReceiptDAL.UpdateReceiptItem(1, new ReceiptItem() { Name = "strawb" });
 
-            
+
+        }
+
+        [Ignore("Updates Database - UpdateReceiptItemName")]
+        [Test]
+        public static void UpdateReceiptItemName()
+        {
+            ReceiptDAL.UpdateReceiptItemName(new ReceiptItemName() { Id = 1, Name = "strawb4" });
+        }
+
+        [Ignore("Updates Database - AddReceiptItemName")]
+        [Test]
+        public static void AddReceiptItemName()
+        {
+            ReceiptDAL.UpdateReceiptItemName(new ReceiptItemName() { Name = "ban" });
+        }
+
+        [Test]
+        public static void ReceiptItemNamesNotMatchedYet()
+        {
+            BpDS.ReceiptItemNamesDataTable dt = ReceiptDAL.ReceiptItemNamesNotMatchedYet();
+
+            Assert.Greater(dt.Rows.Count, 0);
         }
     }
 }

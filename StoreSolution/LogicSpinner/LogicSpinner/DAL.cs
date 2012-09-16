@@ -64,38 +64,34 @@ namespace LogicSpinner
 
     public class ProductDAL: DAL
     {
-        public static List<Product> Products()
+        static BpDSTableAdapters.ProductsTableAdapter daProducts =
+            new BpDSTableAdapters.ProductsTableAdapter();
+
+        public static void UpdateProduct(Product p)
         {
-            string queryString = string.Format(@"
-            SELECT * FROM PRODUCTS
-            ");
+            if (p.Id == 0)
+            {
+                daProducts.Insert(p.Name, p.Cost);    
+            }
+            else
+            {
+                daProducts.Update(p.Name, p.Cost, p.Id);
+            }
+        }        
 
-            DataTable dt = GetDatabaseRecords(queryString);
-
-            List<Product> p = GetGenericProductList(dt);
-
-            return p;
+        public static void FillProducts(BpDS.ProductsDataTable dt)
+        {
+            daProducts.Fill(dt);
         }
 
-        private static List<Product> GetGenericProductList(DataTable dt)
+        public static BpDS.ProductsDataTable GetProducts()
         {
-            List<Product> productList = new List<Product>();
+            return daProducts.GetData();
+        }
 
-            foreach (DataRow dr in dt.Rows)
-            {
-                Product p = new Product()
-                {
-                    Id = Convert.ToInt32(dr["Id"])
-                    ,
-                    Name = dr["Name"].ToString()
-                    ,
-                    Cost = GetSafeDecimal(dr["Cost"])
-                };
-
-                productList.Add(p);
-            }
-
-            return productList;
+        public static BpDS.ProductsDataTable ProductsNotMatchedYet()
+        {
+            return daProducts.GetProductsNotMatchedYet();
         }
     }
 
@@ -163,10 +159,12 @@ namespace LogicSpinner
             new BpDSTableAdapters.ReceiptsTableAdapter();
         static BpDSTableAdapters.ReceiptItemsTableAdapter daReceiptItems =
             new BpDSTableAdapters.ReceiptItemsTableAdapter();
+        static BpDSTableAdapters.ReceiptItemNamesTableAdapter daReceiptItemNames =
+            new BpDSTableAdapters.ReceiptItemNamesTableAdapter();
 
         static BpDS.ReceiptsDataTable dtReceipts;
-        static BpDS.ReceiptItemsDataTable dtReceiptItems;
-
+        //static BpDS.ReceiptItemsDataTable dtReceiptItems;
+        //static BpDS.ReceiptItemNamesDataTable dtReceiptItemNames;
 
         public static List<Receipt> ReceiptItems()
         {
@@ -211,6 +209,21 @@ namespace LogicSpinner
             return list;
         }
 
+        
+
+        public static void UpdateReceiptItemName(ReceiptItemName r)
+        {
+            if (r.Id == 0)
+            {
+                daReceiptItemNames.Insert(r.Name);
+            }
+            else
+            {
+                daReceiptItemNames.Update(r.Name,r.Id);
+            }
+
+        }
+
         //Insert new receipt 
         public static int UpdateReceipt(Receipt receipt)
         {       
@@ -244,6 +257,11 @@ namespace LogicSpinner
             return receipt;
         }
 
+        public static BpDS.ReceiptItemNamesDataTable ReceiptItemNamesNotMatchedYet()
+        {
+            return daReceiptItemNames.GetReceiptItemNamesNotMatchedYet();
+        }
+        
         private static List<ReceiptItem> GetGenericReceiptItemList(DataTable dt)
         {
             List<ReceiptItem> list = new List<ReceiptItem>();
@@ -259,6 +277,8 @@ namespace LogicSpinner
 
             return list;
         }
+
+
 
     }
 }

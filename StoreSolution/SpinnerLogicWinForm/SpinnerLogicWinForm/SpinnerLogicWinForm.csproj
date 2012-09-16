@@ -52,6 +52,12 @@
     <Compile Include="Main.Designer.cs">
       <DependentUpon>Main.cs</DependentUpon>
     </Compile>
+    <Compile Include="MatchReceiptNames.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MatchReceiptNames.Designer.cs">
+      <DependentUpon>MatchReceiptNames.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReceiptItemLookup.cs">
@@ -60,6 +66,12 @@
     <Compile Include="ReceiptItemLookup.Designer.cs">
       <DependentUpon>ReceiptItemLookup.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Main.resx">
+      <DependentUpon>Main.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MatchReceiptNames.resx">
+      <DependentUpon>MatchReceiptNames.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -81,6 +93,12 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\LogicSpinner\LogicSpinner\LogicSpinner.csproj">
+      <Project>{77F2D292-6C53-4E38-8E00-3461EDBEDBD9}</Project>
+      <Name>LogicSpinner</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

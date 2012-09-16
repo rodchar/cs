@@ -15,7 +15,7 @@ namespace SpinnerLogicWinForm
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new ReceiptItemLookup());
+            Application.Run(new MatchReceiptNames());
         }
     }
 }

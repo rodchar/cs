@@ -15,5 +15,16 @@ namespace SpinnerLogicWinForm
         {
             InitializeComponent();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            ReceiptItemLookup frm = new ReceiptItemLookup();
+            frm.ShowDialog();
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

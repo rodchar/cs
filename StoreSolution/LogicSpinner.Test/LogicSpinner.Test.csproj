@@ -69,7 +69,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="docs\bpdb.BAK" />
     <None Include="docs\Receit Items Objects.pptx" />
     <None Include="lib\nunit\nunit-agent.exe.config" />
     <None Include="lib\nunit\nunit-console-x86.exe.config" />
@@ -81,6 +80,7 @@
     <Content Include="docs\feed.txt" />
     <Content Include="docs\Readme.txt" />
     <Content Include="docs\Spinner Loop Locals.JPG" />
+    <Content Include="docs\StoreSolution Diagram.png" />
     <Content Include="docs\Todo.txt" />
     <Content Include="lib\nunit\framework\nunit.framework.dll" />
     <Content Include="lib\nunit\framework\nunit.framework.xml" />

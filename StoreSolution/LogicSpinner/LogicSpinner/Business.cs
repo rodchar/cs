@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Data;
 
 namespace LogicSpinner
 {
@@ -58,6 +59,27 @@ namespace LogicSpinner
             return value.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
                 .GroupBy(s => s.Trim())
                 .ToDictionary(g => g.Key, g => g.Count());
+        }
+    }
+
+    public class ProductBLL
+    {
+        public static BpDS.ProductsDataTable Products()
+        {
+            return ProductDAL.GetProducts();
+        }
+
+        public static BpDS.ProductsDataTable ProductsNotMatched()
+        {
+            return ProductDAL.ProductsNotMatchedYet();
+        }
+    }
+
+    public class ReceiptBLL
+    {
+        public static BpDS.ReceiptItemNamesDataTable ReceiptItemNamesNotMatched()
+        {
+            return ReceiptDAL.ReceiptItemNamesNotMatchedYet();
         }
     }
 }

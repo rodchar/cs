@@ -14,11 +14,11 @@ namespace SpinnerLogicWinForm
         public ReceiptItemLookup()
         {
             InitializeComponent();
+            this.AcceptButton = btnAddReceiptItemName;
         }
 
         private void btnAddReceiptItemName_Click(object sender, EventArgs e)
         {
-
             lbReceiptsProducts.Items.Add(tbReceiptsProducts.Text);
             tbReceiptsProducts.Clear();
             tbReceiptsProducts.Focus();
@@ -53,6 +53,18 @@ namespace SpinnerLogicWinForm
             {
                 toBusiness.Add(item.ToString());    
             }
+
+            this.Close();
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void tbReceiptsProducts_Click(object sender, EventArgs e)
+        {
+            this.AcceptButton = btnAddReceiptItemName;
         }
     }
 }
