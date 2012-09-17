@@ -1,4 +1,9 @@
-﻿9/15/2012 (4 hours)
+﻿1:02 AM 9/17/2012
+1. Test for ReceiptBLL.UpdateReceipt
+2. Test for ReceiptBLL.UpdateReceiptItem
+3. Watch Out return SCOPE_IDENTITY needs custom Insert ExecuteMode = Scalar
+
+9/15/2012 (4 hours)
 1. Save the database
 2. Done 9/15/2012. Added ProductsNotMatched Query and Test
 3. Done 9/15/2012. Added ReceiptItemNamesNotMatched Query and Test

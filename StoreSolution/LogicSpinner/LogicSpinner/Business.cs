@@ -81,5 +81,15 @@ namespace LogicSpinner
         {
             return ReceiptDAL.ReceiptItemNamesNotMatchedYet();
         }
+
+        public static int UpdateReceipt(Receipt r)
+        {
+            return ReceiptDAL.UpdateReceipt(r);
+        }
+
+        public static string UpdateReceiptItem(int receiptId, ReceiptItem item)
+        {
+            return ReceiptDAL.UpdateReceiptItem(receiptId, item);
+        }
     }
 }

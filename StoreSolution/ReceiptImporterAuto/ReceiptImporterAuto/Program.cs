@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.IO;
 using System.Text.RegularExpressions;
+using LogicSpinner;
 
 namespace ReceiptImporterAuto
 {
@@ -24,29 +25,49 @@ namespace ReceiptImporterAuto
             using (StreamWriter writer = new StreamWriter(readLogs))
             {
                 IEnumerable<string> lines = File.ReadLines(INPUT_FILE).Skip(readCount);
+                List<ReceiptItem> receiptItems = new List<ReceiptItem>();
+                int newReceiptId = 0;
+                
                 foreach (string line in lines)
                 {
                     //Search for business rule pattern
                     var dateMatch = Regex.Match(line, DATE_PATTERN, RegexOptions.IgnoreCase);
                     var purchaseItemMatch = Regex.Match(line, PURCHASE_ITEM_PATTERN, RegexOptions.IgnoreCase);
 
+
                     //if line contains a date and time (regex)
                     if (dateMatch.Success)
                     {
                         Console.WriteLine(dateMatch.Value);
+                        
+                        // create a Receipt object
+                        DateTime d = default(DateTime);
+                        DateTime.TryParse(dateMatch.Value,out d);
+                        if (d != DateTime.MinValue)
+                        {
+                            newReceiptId = ReceiptBLL.UpdateReceipt(new Receipt() { Date = d });
+                            receiptItems = new List<ReceiptItem>();
+                        }
+                        else
+                        {
+                            continue; //something weird might have happened 
+                        }
                     }
 
                     // start processing line items (regex)
                     if (purchaseItemMatch.Success)
                     {
                         Console.WriteLine("{0}:{1}", purchaseItemMatch.Groups[1].Value, purchaseItemMatch.Groups[2].Value);
+
+                        // create a list<ReceiptItem>
+                        ReceiptItem item = new ReceiptItem();
+                        item.Name = purchaseItemMatch.Groups[1].Value;
+                        decimal cost = 0M;
+                        decimal.TryParse(purchaseItemMatch.Groups[2].Value, out cost);
+                        item.Cost = cost;
+                        item.ProductName = ReceiptBLL.UpdateReceiptItem(newReceiptId, item);
+                        receiptItems.Add(item);
                     }
-
-
-                    // create a list<PurchaseItem>
-
-                    // create a purchase object
-
 
                     //process as line read. 
                     writer.WriteLine(line);

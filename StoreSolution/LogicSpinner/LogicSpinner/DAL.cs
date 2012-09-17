@@ -231,7 +231,7 @@ namespace LogicSpinner
             //New Receipt
             if (receipt.Id == 0)
             {
-                newReceiptId = daReceipts.Insert(receipt.Date, null);
+                newReceiptId = (int)daReceipts.InsertAndReturnId(receipt.Date, null);
             }
 
             return newReceiptId;
@@ -243,7 +243,7 @@ namespace LogicSpinner
             string productName = string.Empty;
             if (receiptId > 0)
             {
-                productName = daReceiptItems.InsertQuery(receiptId, item.Name).ToString();
+                productName = daReceiptItems.InsertQuery(receiptId, item.Name, item.Cost).ToString();
             }
             return productName;
         }

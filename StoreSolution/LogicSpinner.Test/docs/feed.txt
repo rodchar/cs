@@ -1,24 +1,26 @@
-9/5/2012 10:01:01
+9/5/2012 10:01:PM
 
-strawb
-ban
-ban
-kiwi
+strawb   .93
+ban  .25
+ban  .25
+kiwi   0.97
 
 Thanks for shopping with us!
 
 9/5/2012 10:00:02 AM
 
-strawb
-strawb
-strawb
-strawb
-strawb
-strawb
-strawb
-strawb
-strawb
-strawb
+strawb   0.93
+strawb   0.93
+strawb   0.93
+strawb   0.93
+strawb   0.93
+strawb   0.93
+strawb   0.93
+strawb   0.93
+strawb   0.93
+strawb   0.93
+
+Total   $9.99
 
 Thanks for shopping with us!
 

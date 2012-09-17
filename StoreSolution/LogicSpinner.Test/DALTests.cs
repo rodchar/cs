@@ -98,6 +98,29 @@ namespace LogicSpinner.Test
             Assert.Greater(r.Id, 0);
         }
 
+        //[Ignore("Updates Database - InsertReceipt")]
+        [Test]
+        public void InsertReceipt()
+        {
+            //Arrange 
+            Receipt r = null;
+            int id = 0;
+
+            //Act
+            id = ReceiptDAL.UpdateReceipt(new Receipt() { Date = DateTime.Now });
+            
+
+            if (id > 0)
+            {
+                r = ReceiptDAL.GetReceipt(id);
+            }
+
+            //Assert
+            Assert.Greater(r.Id, 0);
+            Console.WriteLine();
+            Console.WriteLine("The new id for adding new receipt was: {0}", id);
+        }
+
         [Ignore("Updates Database - UpdateReceiptItem")]
         [Test]
         public static void UpdateReceiptItem()
