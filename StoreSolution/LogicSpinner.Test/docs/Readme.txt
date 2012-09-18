@@ -1,5 +1,8 @@
 See Store Solution Diagram for the overarching goal for Spinner Logic solution.
 
+UberSVN
+http://www.deepinsightgroup.com:9890/ubersvn/views/platform/shared/welcome.jsf
+
 1:58 AM 9/17/2012
 Insert and Returning SCOPE_IDENTITY
 http://stackoverflow.com/a/5298753/139698
